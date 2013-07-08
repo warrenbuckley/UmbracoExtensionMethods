@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods.Members
+namespace Umbraco.Community.ExtensionMethods
 {
     public static class Members
     {
