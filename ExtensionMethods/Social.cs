@@ -19,6 +19,7 @@ namespace Umbraco.Community.ExtensionMethods
             //Check size
             if (size > 512)
             {
+                //If bigger than 512, set it to biggest size of 512
                 size = 512;
             }
 
