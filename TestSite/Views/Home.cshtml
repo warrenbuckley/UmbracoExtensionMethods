@@ -10,12 +10,12 @@
 <h1>Date: @storedDate</h1>
 
 <h1>Age: @storedDate.Age()</h1>
-<h1>@storedDate.GetDayNumber()</h1>
+<h1>Day by number: @storedDate.GetDayNumber()</h1>
 
 <h1>Weekday? @storedDate.IsWeekday()</h1>
 
 <h1>Pretty Date: @storedDate.PrettyDate()</h1>
 <h1>Within 7 days? @storedDate.DateWithinLastDays(7)</h1>
-<h1>First Day @storedDate.GetFirstDayOfMonth().DayOfWeek</h1>
-<h1>Last Day @storedDate.GetLastDayOfMonth().DayOfWeek</h1>
-<h1>Last Day @storedDate.FormatDateTime("ddd ddS MMMM yyyy")</h1>
+<h1>First Day: @storedDate.GetFirstDayOfMonth().DayOfWeek</h1>
+<h1>Last Day: @storedDate.GetLastDayOfMonth().DayOfWeek</h1>
+<h1>Format Date with suffix: @storedDate.FormatDateTime("ddd ddS MMMM yyyy")</h1>
