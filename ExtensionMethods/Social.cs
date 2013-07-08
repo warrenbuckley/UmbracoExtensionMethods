@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods.Social
+namespace Umbraco.Community.ExtensionMethods
 {
     public static class Social
     {

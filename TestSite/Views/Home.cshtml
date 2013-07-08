@@ -1,6 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using Umbraco.Community.ExtensionMethods.Dates
-@using Umbraco.Community.ExtensionMethods.Social
+@using Umbraco.Community.ExtensionMethods
 @using umbraco.BusinessLogic;
 @using Umbraco.Core;
 
@@ -12,14 +11,14 @@
 
     var email = "warren@creativewebspecialist.co.uk";
     
-    User testy = new User(1);
-    testy.
+    //User testy = new User(1);
+
 }
 
 <h1>Date Tests</h1>
 <h2>Date: @storedDate</h2>
 <h2>Age: @storedDate.Age()</h2>
-<h2>@storedDate.GetDayNumber()</h2>
+<h2>Day number & suffix: @storedDate.GetDayNumber()</h2>
 <h2>Pretty Date: @storedDate.PrettyDate()</h2>
 <h2>Leap Year? @storedDate.IsLeapYear()</h2>
 <h2>Weekday? @storedDate.IsWeekday()</h2>
@@ -28,7 +27,7 @@
 <h2>First Day @storedDate.GetFirstDayOfMonth().DayOfWeek</h2>
 <h2>Last Day @storedDate.GetLastDayOfMonth().DayOfWeek</h2>
 <h2>Unix time @storedDate.ToUnixTime()</h2>
-
+<h2>Format Date with suffix: @storedDate.FormatDateTime("ddd ddS MMMM yyyy")</h2>
 
 <hr/>
 
