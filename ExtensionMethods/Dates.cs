@@ -46,10 +46,10 @@ namespace Umbraco.Community.ExtensionMethods
         }
 
         ///<summary>
-        /// Gets the ordinal suffix for a given date
+        /// Gets the Day number and ordinal suffix for a given date
         ///</summary>
         ///<param name="date">The date</param>
-        ///<returns>The ordinal suffix</returns>
+        ///<returns>The day number and ordinal suffix</returns>
         public static string GetDayNumber(this DateTime date)
         {
             switch (date.Day)
@@ -303,7 +303,7 @@ namespace Umbraco.Community.ExtensionMethods
         ///</summary>
         ///<param name="date">The date</param>
         ///<returns>The ordinal suffix</returns>
-        public static string GetDayNumberSuffix(this DateTime date)
+        private static string GetDayNumberSuffix(DateTime date)
         {
             switch (date.Day)
             {
