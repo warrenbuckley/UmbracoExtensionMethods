@@ -1,8 +1,6 @@
 Umbraco Community Extension Methods
 ========================
-
-This is a community project to create a library of Umbraco Extension Methods to use in Razor files.
-
+This is a community project to create a library of Umbraco Extension Methods to use in Razor files and with the ContentService?
 
 ##Ideas
 Here are a few ideas that I have bouncing around:
