@@ -1,21 +1,40 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Community.ExtensionMethods
+@using umbraco.BusinessLogic;
+@using Umbraco.Core;
+
 @{
     Layout = null;
 
     //Get the date from the node as a DateTime object
     DateTime storedDate = Model.Content.GetPropertyValue<DateTime>("ageTest");
+
+    var email = "warren@creativewebspecialist.co.uk";
+    
+   // User testy = new User(1);
+
 }
 
-<h1>Date: @storedDate</h1>
+<h1>Date Tests</h1>
+<h2>Date: @storedDate</h2>
+<h2>Age: @storedDate.Age()</h2>
+<h2>Day number and suffix: @storedDate.GetDayNumber()</h2>
+<h2>Pretty Date: @storedDate.PrettyDate()</h2>
+<h2>Leap Year? @storedDate.IsLeapYear()</h2>
+<h2>Weekday? @storedDate.IsWeekday()</h2>
+<h2>Weekend? @storedDate.IsWeekend()</h2>
+<h2>Within 7 days? @storedDate.DateWithinLastDays(7)</h2>
+<h2>First Day @storedDate.GetFirstDayOfMonth().DayOfWeek</h2>
+<h2>Last Day @storedDate.GetLastDayOfMonth().DayOfWeek</h2>
+<h2>Unix time @storedDate.ToUnixTime()</h2>
+<h2>Format Date with suffix: @storedDate.FormatDateTime("ddd ddS MMMM yyyy")</h2>
 
-<h1>Age: @storedDate.Age()</h1>
-<h1>Day by number: @storedDate.GetDayNumber()</h1>
+<hr/>
 
-<h1>Weekday? @storedDate.IsWeekday()</h1>
+<h1>Social</h1>
+<h2>Gravatar example</h2>
+<img src="@email.GravtarImageURL(size: 50)"/>
 
-<h1>Pretty Date: @storedDate.PrettyDate()</h1>
-<h1>Within 7 days? @storedDate.DateWithinLastDays(7)</h1>
-<h1>First Day: @storedDate.GetFirstDayOfMonth().DayOfWeek</h1>
-<h1>Last Day: @storedDate.GetLastDayOfMonth().DayOfWeek</h1>
-<h1>Format Date with suffix: @storedDate.FormatDateTime("ddd ddS MMMM yyyy")</h1>
+<hr/>
+
+<h1>Users</h1>
