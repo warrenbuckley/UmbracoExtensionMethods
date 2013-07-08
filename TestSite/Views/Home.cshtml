@@ -11,9 +11,8 @@
     DateTime storedDate = Model.Content.GetPropertyValue<DateTime>("ageTest");
 
     var email = "warren@creativewebspecialist.co.uk";
-    
-    User testy = new User(1);
-    testy.
+
+    var vimeoID = "17687260";
 }
 
 <h1>Date Tests</h1>
@@ -36,6 +35,8 @@
 <h2>Gravatar example</h2>
 <img src="@email.GravtarImageURL(size: 50)"/>
 
+<h2>Vimeo ID: @vimeoID </h2>
+@Html.Raw(vimeoID.VimeoEmbed(300,300))
 <hr/>
 
 <h1>Users</h1>
