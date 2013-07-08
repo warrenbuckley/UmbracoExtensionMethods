@@ -42,22 +42,22 @@ namespace Umbraco.Community.ExtensionMethods
         ///</summary>
         ///<param name="date">The date</param>
         ///<returns>The ordinal suffix</returns>
-        public static string GetDayNumberSuffix(this DateTime date)
+        public static string GetDayNumber(this DateTime date)
         {
             switch (date.Day)
             {
                 case 1:
                 case 21:
                 case 31:
-                    return "st";
+                    return date.Day + "st";
                 case 2:
                 case 22:
-                    return "nd";
+                    return date.Day + "nd";
                 case 3:
                 case 23:
-                    return "rd";
+                    return date.Day + "rd";
                 default:
-                    return "th";
+                    return date.Day + "th";
             }
         }
 

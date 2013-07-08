@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace Umbraco.Community.ExtensionMethods
 {
-    public static class Social
+    public static class Users
     {
-        //YouTube Embededed Video from VideoID or URL
-
-        //Vimeo Embededed Video from VideoID or URL
-
-        //Gravatar Image URL
-
     }
 }
