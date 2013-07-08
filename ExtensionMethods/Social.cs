@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods
+namespace Umbraco.Community.ExtensionMethods.Social
 {
     public static class Social
     {
@@ -19,6 +19,7 @@ namespace Umbraco.Community.ExtensionMethods
             //Check size
             if (size > 512)
             {
+                //If bigger than 512, set it to biggest size of 512
                 size = 512;
             }
 
