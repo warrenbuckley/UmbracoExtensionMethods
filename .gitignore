@@ -158,3 +158,4 @@ $RECYCLE.BIN/
 TestSite/App_Data/TEMP/*
 TestSite/App_Data/Logs/*
 TestSite/App_Data/Logs/
+TestSite/App_Data/umbraco.config
