@@ -2,7 +2,9 @@
 <plugins>
   <baseType type="umbraco.interfaces.IApplicationStartupHandler" resolutionType="FindAllTypes">
     <add type="umbraco.editorControls.PickerRelations.PickerRelationsEventHandler, umbraco.editorControls, Version=1.0.4927.23558, Culture=neutral, PublicKeyToken=null" />
-    <add type="MyNamespace.StartupEventHandlers, cms, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.BusinessLogic.ApplicationRegistrar, businesslogic, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.BusinessLogic.ApplicationTreeRegistrar, businesslogic, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
+    <add type="UmbracoExamine.UmbracoEventManager, UmbracoExamine, Version=0.6.0.23555, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.Cache.CacheRefresherEventHandler, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.LibraryCacheRefresher, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.Search.ExamineEvents, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
@@ -15,9 +17,7 @@
     <add type="umbraco.presentation.nodeFactory.UmbracoSiteMapProviderAccessUpdate, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.presentation.EnsureSystemPathsApplicationStartupHandler, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.presentation.umbraco.Search.ExamineEvents, umbraco, Version=1.0.4927.23557, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.BusinessLogic.ApplicationRegistrar, businesslogic, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.BusinessLogic.ApplicationTreeRegistrar, businesslogic, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
-    <add type="UmbracoExamine.UmbracoEventManager, UmbracoExamine, Version=0.6.0.23555, Culture=neutral, PublicKeyToken=null" />
+    <add type="MyNamespace.StartupEventHandlers, cms, Version=1.0.4927.23555, Culture=neutral, PublicKeyToken=null" />
   </baseType>
   <baseType type="Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter" resolutionType="FindAllTypes" />
   <baseType type="Umbraco.Web.Mvc.SurfaceController" resolutionType="FindAllTypes" />

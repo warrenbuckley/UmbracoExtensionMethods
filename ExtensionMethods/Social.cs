@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Umbraco.Community.ExtensionMethods.Social
@@ -14,7 +15,7 @@ namespace Umbraco.Community.ExtensionMethods.Social
         //Vimeo Embededed Video from VideoID or URL
 
         //Gravatar Image URL
-        public static string GravtarImageURL(this string emailAddress, string defaultImageURL, int size)
+        public static string GravtarImageURL(this string emailAddress, string defaultImageURL = "", int size = 80)
         {
             //Check size
             if (size > 512)
@@ -23,8 +24,14 @@ namespace Umbraco.Community.ExtensionMethods.Social
                 size = 512;
             }
 
-            //MD5 hash the email address
-            var hashedEmail = GetMd5Hash(emailAddress);
+            var hashedEmail = string.Empty;
+
+            //ensure emailAddress is an email
+            if (IsValidEmail(emailAddress))
+            {
+                //MD5 hash the email address
+                hashedEmail = GetMd5Hash(emailAddress);
+            }
 
             //Return Gravatar URL
             return string.Format("http://www.gravatar.com/avatar/{0}?s={1}&d={2}", hashedEmail, size, defaultImageURL);
@@ -55,7 +62,13 @@ namespace Umbraco.Community.ExtensionMethods.Social
             return sBuilder.ToString();
         }
 
+        public static bool IsValidEmail(string input)
+        {
+            var pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+            var regex   = new Regex(pattern, RegexOptions.IgnoreCase);
 
+            return regex.IsMatch(input);
+        }
 
 
     }

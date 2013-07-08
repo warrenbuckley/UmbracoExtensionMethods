@@ -9,6 +9,7 @@ namespace Umbraco.Community.ExtensionMethods.Media
     public static class Media
     {
         //ImageGen URL Helper
+        /*
         public static string ImageGenURL(this string imageURL, int width, int height)
         {
             //Base URL
@@ -60,6 +61,7 @@ namespace Umbraco.Community.ExtensionMethods.Media
             //return the URL thats been built up
             return baseURL;
         }
+        */
 
 
         //ImageResizing.net URL Helper
