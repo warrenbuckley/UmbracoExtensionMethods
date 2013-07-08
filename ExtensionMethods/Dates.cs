@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods.Dates
+namespace Umbraco.Community.ExtensionMethods
 {
     /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
     public static class Dates
