@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods.Dates
+namespace Umbraco.Community.ExtensionMethods
 {
     /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
     public static class Dates
     {
+
+        /// <summary>
+        /// The default DateTime format for uComponents.
+        /// </summary>
+        internal const string DefaultDateFormat = "dd MMMM yyyy";
+
+
         /// <summary>
         /// Get the current age, from the specified date of birth.
         /// </summary>
@@ -38,10 +46,10 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         }
 
         ///<summary>
-        /// Gets the ordinal suffix for a given date
+        /// Gets the Day number and ordinal suffix for a given date
         ///</summary>
         ///<param name="date">The date</param>
-        ///<returns>The ordinal suffix</returns>
+        ///<returns>The day number and ordinal suffix</returns>
         public static string GetDayNumber(this DateTime date)
         {
             switch (date.Day)
@@ -264,5 +272,57 @@ namespace Umbraco.Community.ExtensionMethods.Dates
 
             return date.ToString();
         }
+
+
+        /// <summary>
+        /// Formats the date time.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="format">The format.</param>
+        /// <returns></returns>
+        public static string FormatDateTime(this DateTime date, string format)
+        {
+            // if the format string is empty...
+            if (string.IsNullOrEmpty(format))
+            {
+                // ... set it to the default date format.
+                format = DefaultDateFormat;
+            }
+            else
+            {
+                // otherwise, replace the ordinal token
+                format = Regex.Replace(format, @"(?<!\\)((\\\\)*)(S)", "$1" + GetDayNumberSuffix(date));
+            }
+
+            // return with formatting the remaining tokens.
+            return date.ToString(format);
+        }
+
+        ///<summary>
+        /// Gets the ordinal suffix for a given date
+        ///</summary>
+        ///<param name="date">The date</param>
+        ///<returns>The ordinal suffix</returns>
+        private static string GetDayNumberSuffix(DateTime date)
+        {
+            switch (date.Day)
+            {
+                case 1:
+                case 21:
+                case 31:
+                    return @"\s\t";
+                case 2:
+                case 22:
+                    return @"\n\d";
+                case 3:
+                case 23:
+                    return @"\r\d";
+                default:
+                    return @"\t\h";
+            }
+        }
+
+
+
     }
 }
