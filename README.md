@@ -38,6 +38,7 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 
 ## Social
 * GravtarImageURL(string defaultImageURL, int size)
+* VimeoEmbed(int width, int height)
 
 
 ## Strings
