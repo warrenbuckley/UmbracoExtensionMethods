@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Community.ExtensionMethods
+@{
+    Layout = null;
+
+    //Get the date from the node as a DateTime object
+    DateTime storedDate = Model.Content.GetPropertyValue<DateTime>("ageTest");
+}
+
+<h1>Age: @storedDate.Age()</h1>

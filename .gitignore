@@ -151,3 +151,10 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+# =========================
+# Warren's Git Ignores
+# =========================
+TestSite/App_Data/TEMP/*
+TestSite/App_Data/Logs/*
+TestSite/App_Data/Logs/
