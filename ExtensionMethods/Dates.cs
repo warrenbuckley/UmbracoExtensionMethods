@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Umbraco.Community.ExtensionMethods
 {
+    /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
     public static class Dates
     {
         /// <summary>
@@ -15,7 +16,6 @@ namespace Umbraco.Community.ExtensionMethods
         /// <returns>
         /// Returns the age based on the specified date of birth.
         /// </returns>
-        /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
         public static int Age(this DateTime dateOfBirth)
         {
             //Today's date
@@ -35,6 +35,234 @@ namespace Umbraco.Community.ExtensionMethods
 
             // unable to parse date-of-birth.
             return -1;
+        }
+
+        ///<summary>
+        /// Gets the ordinal suffix for a given date
+        ///</summary>
+        ///<param name="date">The date</param>
+        ///<returns>The ordinal suffix</returns>
+        public static string GetDayNumberSuffix(this DateTime date)
+        {
+            switch (date.Day)
+            {
+                case 1:
+                case 21:
+                case 31:
+                    return "st";
+                case 2:
+                case 22:
+                    return "nd";
+                case 3:
+                case 23:
+                    return "rd";
+                default:
+                    return "th";
+            }
+        }
+
+
+        /// <summary>
+        /// Determines whether the specified day is weekday.
+        /// </summary>
+        /// <param name="day">The date</param>
+        /// <returns>
+        /// 	<c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsWeekday(this DateTime date)
+        {
+            var day = date.DayOfWeek;
+
+            switch (day)
+            {
+                // is a weekend?
+                case DayOfWeek.Saturday:
+                case DayOfWeek.Sunday:
+                    return false;
+
+                // otherwise its a weekday?
+                default:
+                    return true;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified date is weekend.
+        /// </summary>
+        /// <param name="date">The date</param>
+        /// <returns>
+        /// 	<c>true</c> if the specified date is weekend; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsWeekend(this DateTime date)
+        {
+            return !IsWeekday(date);
+        }
+
+
+        /// <summary>
+        /// Determines whether [is leap year] [the specified date].
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>
+        /// 	<c>true</c> if [is leap year] [the specified date]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsLeapYear(this DateTime date)
+        {
+            // test if number of days in Feburary is 29 for the current year in the date
+            return (DateTime.DaysInMonth(date.Year, 2).Equals(29));
+        }
+
+        /// <summary>
+        /// Gets the elapsed seconds since the input DateTime.
+        /// </summary>
+        /// <param name="date">The input DateTime (as a string).</param>
+        /// <returns>
+        /// Returns the elapsed seconds since the input DateTime.
+        /// </returns>
+        public static double ElapsedSeconds(this DateTime date)
+        {
+           
+            return DateTime.Now.Subtract(date).TotalSeconds;
+        }
+
+        /// <summary>
+        /// Tests if a date is within the last number of specified days.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="days">The number of days.</param>
+        /// <returns>
+        /// Returns true or false depending on if the date is within the last number of days.
+        /// </returns>
+        public static bool DateWithinLastDays(this DateTime date, int days)
+        {
+            var lastDays    = (double)0 - days;
+            var startDate   = date.AddDays(lastDays);
+
+            return (date >= startDate);
+        }
+
+        /// <summary>
+        /// Converts a date to Unix time.
+        /// </summary>
+        /// <param name="date">The date string.</param>
+        /// <returns>
+        /// Return the total number of seconds between Unix epoch and the specified date/time.
+        /// </returns>
+        public static double ToUnixTime(this DateTime date)
+        {
+            // set the Unix epoch
+            var unixEpoch = new DateTime(1970, 1, 1);
+
+            // return the total seconds (from either specified date or current date/time).
+            return (date - unixEpoch).TotalSeconds;
+        }
+
+        /// <summary>
+        /// Gets the first day of month.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        public static DateTime GetFirstDayOfMonth(this DateTime date)
+        {
+            // get the first day of the month.
+            var firstDay = new DateTime(date.Year, date.Month, 1);
+            return firstDay;
+        }
+
+        /// <summary>
+        /// Gets the last day of month.
+        /// </summary>
+        /// <param name="date">The date string.</param>
+        /// <returns></returns>
+        public static DateTime GetLastDayOfMonth(this DateTime date)
+        {
+            // get the last day of the month.
+            var lastDay = new DateTime(date.Year, date.Month, 1).AddMonths(1).AddDays(-1);
+            return lastDay;
+        }
+
+        /// <summary>
+        /// Gets the pretty date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Returns a pretty date.</returns>
+        /// <remarks>
+        /// http://dotnetperls.com/pretty-date
+        /// http://ejohn.org/blog/javascript-pretty-date/
+        /// </remarks>
+        public static string PrettyDate(this DateTime date)
+        {
+            // 1. Get time span elapsed since the date.
+            var s = DateTime.Now.Subtract(date);
+
+            // 2. Get total number of days elapsed.
+            var dayDiff = (int)s.TotalDays;
+
+            // 3. Get total number of seconds elapsed.
+            var secDiff = (int)s.TotalSeconds;
+
+            // 4. Don't allow out of range values.
+            if (dayDiff < 0 || dayDiff >= 31)
+            {
+                return date.ToString();
+            }
+
+            // 5. Handle same-day times.
+            if (dayDiff == 0)
+            {
+                // A. Less than one minute ago.
+                if (secDiff < 60)
+                {
+                    return "just now";
+                }
+
+                // B. Less than 2 minutes ago.
+                if (secDiff < 120)
+                {
+                    return "1 minute ago";
+                }
+
+                // C.Less than one hour ago.
+                if (secDiff < 3600)
+                {
+                    return string.Format("{0} minutes ago", Math.Floor((double)secDiff / 60));
+                }
+
+                // D. Less than 2 hours ago.
+                if (secDiff < 7200)
+                {
+                    return "1 hour ago";
+                }
+
+                // E. Less than one day ago.
+                if (secDiff < 86400)
+                {
+                    return string.Format("{0} hours ago", Math.Floor((double)secDiff / 3600));
+                }
+            }
+
+            // 6. Handle previous days.
+            if (dayDiff == 1)
+            {
+                return "yesterday";
+            }
+
+            if (dayDiff < 7)
+            {
+                return string.Format("{0} days ago", dayDiff);
+            }
+
+            if (dayDiff < 14)
+            {
+                return "1 week ago";
+            }
+
+            if (dayDiff < 31)
+            {
+                return string.Format("{0} weeks ago", Math.Ceiling((double)dayDiff / 7));
+            }
+
+            return date.ToString();
         }
     }
 }

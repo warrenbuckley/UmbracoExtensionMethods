@@ -7,4 +7,14 @@
     DateTime storedDate = Model.Content.GetPropertyValue<DateTime>("ageTest");
 }
 
+<h1>Date: @storedDate</h1>
+
 <h1>Age: @storedDate.Age()</h1>
+<h1>@storedDate.Day@storedDate.GetDayNumberSuffix()</h1>
+
+<h1>Weekday? @storedDate.IsWeekday()</h1>
+
+<h1>Pretty Date: @storedDate.PrettyDate()</h1>
+<h1>Within 7 days? @storedDate.DateWithinLastDays(7)</h1>
+<h1>First Day @storedDate.GetFirstDayOfMonth().DayOfWeek</h1>
+<h1>Last Day @storedDate.GetLastDayOfMonth().DayOfWeek</h1>
