@@ -64,7 +64,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <param name="ignoreLinebreak">Indicates if linebreaks should be remained</param>
         /// <param name="otherTagsToIgnore">A list of other tag names (without the brackets, like 'div') to ignore</param>
         /// <returns>The HTML stripped result</returns>
-        public static string StripHTML(this string input, bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
+        public static string StripHtml(this string input, bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
         {
             if (ignoreParagraphs || ignoreItalic || ignoreUnderline || ignoreBold || ignoreLinebreak || (otherTagsToIgnore != null && otherTagsToIgnore.Any()))
             {
@@ -107,7 +107,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <param name="length">The approximate length of the output string (default: 300)</param>
         /// <param name="elipsis">Elipsis text to append to the output string (use string.Empty when elipsis should not be added, default: ...)</param>
         /// <returns>The shortened input string with HTML formatting</returns>
-        public static string ShortenHTML(this string input, out bool inputIsShortened, int length = 300, string elipsis = "...")
+        public static string ShortenHtml(this string input, out bool inputIsShortened, int length = 300, string elipsis = "...")
         {
             inputIsShortened = false;
 
@@ -171,10 +171,10 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <param name="length">The approximate length of the output string (default: 300)</param>
         /// <param name="elipsis">Elipsis text to append to the output string (use string.Empty when elipsis should not be added, default: ...)</param>
         /// <returns>The shortened input string with HTML formatting</returns>
-        public static string ShortenHTML(string input, int length = 300, string elipsis = "...")
+        public static string ShortenHtml(string input, int length = 300, string elipsis = "...")
         {
             bool dummy;
-            return ShortenHTML(input, out dummy, length, elipsis);
+            return ShortenHtml(input, out dummy, length, elipsis);
         }
     }
 }

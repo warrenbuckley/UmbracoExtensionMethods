@@ -7,7 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 
-namespace Umbraco.Community.ExtensionMethods
+namespace Umbraco.Community.ExtensionMethods.ASPNET
 {
     public static class ASPNET
     {
