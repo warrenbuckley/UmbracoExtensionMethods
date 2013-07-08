@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods
+namespace Umbraco.Community.ExtensionMethods.Templates
 {
     public static class Templates
     {

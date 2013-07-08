@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods
+namespace Umbraco.Community.ExtensionMethods.Dates
 {
     /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
     public static class Dates

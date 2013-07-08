@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods
+namespace Umbraco.Community.ExtensionMethods.Social
 {
     public static class Social
     {
