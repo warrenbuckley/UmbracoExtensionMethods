@@ -74,7 +74,12 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 
 
 ## YouTube
-* .
+* string GetYouTubeId(this string subject)
+* bool GetYouTubeId(this string subject, out string videoId)
+* string YouTubeEmbed(this string videoId, int width, int height)
+* string YouTubeEmbed(this string videoId, int width, int height, bool showRelations, string wmode)
+* string GetYouTubeThumbnail(this string videoId)
+* string GetYouTubeThumbnail(this string videoId, int index)
 
 
 ## Do you have any ideas?
