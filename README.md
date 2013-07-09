@@ -2,6 +2,10 @@ Umbraco Community Extension Methods
 ========================
 This is a community project to create a library of Umbraco Extension Methods to use in Razor files and with the ContentService?
 
+##Umbraco Test Site - Details
+* Username: admin
+* Password: password
+
 ## ASP.NET
 * GetMasterPageByType(this Page page, Type type)
 * RenderUserControl(this string path, Dictionary<string, object> propertiesToSet = null)
