@@ -2,6 +2,10 @@ Umbraco Community Extension Methods
 ========================
 This is a community project to create a library of Umbraco Extension Methods to use in Razor files and with the ContentService?
 
+## ASP.NET
+* GetMasterPageByType(this Page page, Type type)
+* RenderUserControl(this string path, Dictionary<string, object> propertiesToSet = null)
+
 ## Content
 * .
 
@@ -28,6 +32,12 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 ## DocumentTypes
 * .
 
+## ImageGen
+* .
+
+## ImageResizing
+* .
+
 ## Media
 * .
 
@@ -39,8 +49,6 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 
 ## Social
 * GravatarImageURL(string defaultImageURL, int size)
-* VimeoEmbed(int width, int height)
-
 
 ## Strings
 * FirstCharToUpper()
@@ -54,11 +62,14 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 ## Templates
 * .
 
-## ASP.NET
-* GetMasterPageByType(this Page page, Type type)
-* RenderUserControl(this string path, Dictionary<string, object> propertiesToSet = null)
-
 ## Users
+* .
+
+## Vimeo
+* VimeoEmbed(int width, int height)
+
+
+## YouTube
 * .
 
 
