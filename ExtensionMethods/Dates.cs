@@ -75,7 +75,7 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         /// </summary>
         /// <param name="day">The date</param>
         /// <returns>
-        /// 	<c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsWeekday(this DateTime date)
         {
@@ -156,13 +156,8 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         /// <returns>
         /// Return the total number of seconds between Unix epoch and the specified date/time.
         /// </returns>
-        public static double ToUnixTime(this DateTime date)
-        {
-            // set the Unix epoch
-            var unixEpoch = new DateTime(1970, 1, 1);
-
-            // return the total seconds (from either specified date or current date/time).
-            return (date - unixEpoch).TotalSeconds;
+        public static double ToUnixTime(this DateTime date) {
+            return (date.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
         }
 
         /// <summary>
