@@ -22,6 +22,7 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 * GetFirstDayOfMonth()
 * GetLastDayOfMonth()
 * PrettyDate()
+* FormatDateTime(string format) `FormatDateTime("ddd ddS MMMM yyyy")` note the S for suffix
 
 
 ## DocumentTypes
@@ -44,9 +45,11 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 ## Strings
 * FirstCharToUpper()
 * HighlightKeywords(IEnumerable<string> keywords, string className)
-* StripHTML(bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
-* ShortenHTML(out bool inputIsShortened, int length = 300, string elipsis = "...")
-* ShortenHTML(int length = 300, string elipsis = "...")
+* StripHtml(bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
+* ShortenHtml(out bool inputIsShortened, int length = 300, string elipsis = "...")
+* ShortenHtml(int length = 300, string elipsis = "...")
+* GetSentence(sentenceIndex)
+* GetParagraph(paragraphIndex) 
 
 ## Templates
 * .
