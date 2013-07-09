@@ -23,7 +23,7 @@ namespace Umbraco.Community.ExtensionMethods.Social
         }
 
         //Gravatar Image URL
-        public static string GravtarImageURL(this string emailAddress, string defaultImageURL = "", int size = 80)
+        public static string GravatarImageURL(this string emailAddress, string defaultImageURL = "", int size = 80)
         {
             //Check size
             if (size > 512)
