@@ -10,17 +10,6 @@ namespace Umbraco.Community.ExtensionMethods.Social
 {
     public static class Social
     {
-        //YouTube Embededed Video from VideoID or URL
-        //TODO
-
-        //Vimeo Embededed Video from VideoID or URL
-        public static string VimeoEmbed(this string vimeoID, int width, int height)
-        {
-            return
-                string.Format(
-                "<iframe src='http://player.vimeo.com/video/{0}' width='{1}' height='{2}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>",
-                vimeoID, width, height);
-        }
 
         //Gravatar Image URL
         public static string GravatarImageURL(this string emailAddress, string defaultImageURL = "", int size = 80)
