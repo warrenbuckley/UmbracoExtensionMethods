@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -323,6 +324,19 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         }
 
 
-
+        /// <summary>
+        /// Transform an integer between 1 and 12 into month name.
+        /// </summary>
+        /// <param name="month">Month</param>
+        /// <returns></returns>
+        public static string GetMonthName(int month)
+        {
+            string monthName = "";
+            if (month > 0)
+            {
+                monthName = month <= 12 ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month) : month.ToString();
+            }          
+            return monthName;
+        }
     }
 }
