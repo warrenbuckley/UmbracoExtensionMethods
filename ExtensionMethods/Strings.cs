@@ -176,5 +176,64 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             bool dummy;
             return ShortenHtml(input, out dummy, length, elipsis);
         }
+
+        /// <summary>
+        /// Returns a particular sentence by splitting by fullstop, question mark and exclamation mark
+        /// </summary>
+        /// <param name="textToSplit">The string</param>
+        /// <param name="sentenceIndex">The index of the sentence to return</param>
+        /// <returns>The single sentence requested</returns>
+        public static string GetSentence(this string textToSplit, int sentenceIndex)
+        {
+            string[] delim = { ".", "!", "?" };
+            string[] splitText = textToSplit.StripHtml(false,false,false,false,false).Split(delim, StringSplitOptions.None);
+            var sentanceCount = splitText.Length;
+            if (sentanceCount >= sentenceIndex)
+            {
+                return splitText[sentenceIndex] + ".";
+            }
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// Returns a particular paragraph by splitting by p tag
+        /// </summary>
+        /// <param name="textToSplit">The HTML formatted string</param>
+        /// <param name="paragraphIndex">The index of the paragraph to return</param>
+        /// <returns>The single paragraph requested</returns>
+        public static string GetParagraph(this string textToSplit, int paragraphIndex)
+        {
+            string[] delim = { "<p>" };
+            string[] splitText = textToSplit.RemoveHtmlComments().StripHtml(true,true,true,true,true,new List<string>{"a"}).Split(delim, StringSplitOptions.RemoveEmptyEntries);
+            int paragraphCount = splitText.Length;
+
+            if (paragraphCount-1 >= paragraphIndex)
+            {
+                var endPos = splitText[paragraphIndex].IndexOf("</p>");
+                return "<p>" + splitText[paragraphIndex].Substring(0, endPos + 4);
+        }
+            return "<p></p>";
+        }
+
+        /// <summary>
+        /// Strips out html comment tags
+        /// </summary>
+        /// <param name="input">The HTML formatted string</param>
+        /// <returns>The html without any comments tags</returns>
+        private static string RemoveHtmlComments(this string input)
+        {
+            string output = string.Empty;
+            string[] temp = Regex.Split(input, "<!--");
+            foreach (string s in temp)
+            {
+                var str = !s.Contains("-->") ? s : s.Substring(s.IndexOf("-->") + 3);
+                if (str.Trim() != string.Empty)
+                {
+                    output = output + str.Trim();
+                }
+            }
+            return output;
+        }
+
     }
 }

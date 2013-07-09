@@ -1,6 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Community.ExtensionMethods.Dates
 @using Umbraco.Community.ExtensionMethods.Social
+@using Umbraco.Community.ExtensionMethods.Strings;
 @using umbraco.BusinessLogic;
 @using Umbraco.Core;
 
@@ -9,7 +10,8 @@
 
     //Get the date from the node as a DateTime object
     DateTime storedDate = Model.Content.GetPropertyValue<DateTime>("ageTest");
-
+    var bodyText = Model.Content.GetPropertyValue<string>("bodyText");
+    
     var email = "warren@creativewebspecialist.co.uk";
 
     var vimeoID = "17687260";
@@ -33,10 +35,13 @@
 
 <h1>Social</h1>
 <h2>Gravatar example</h2>
-<img src="@email.GravtarImageURL(size: 50)"/>
+<img src="@email.GravatarImageURL(size: 50)"/>
 
 <h2>Vimeo ID: @vimeoID </h2>
-@Html.Raw(vimeoID.VimeoEmbed(300,300))
+@* Html.Raw(vimeoID.VimeoEmbed(300,300)) *@
 <hr/>
 
 <h1>Users</h1>
+<h1>Strings</h1>
+<h2>Get Sentence 3: @bodyText.GetSentence(2)</h2>
+<h2>Get Paragraph 4:</h2> @Html.Raw(bodyText.GetParagraph(0))
