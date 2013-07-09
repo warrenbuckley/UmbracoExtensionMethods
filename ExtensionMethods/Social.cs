@@ -73,7 +73,7 @@ namespace Umbraco.Community.ExtensionMethods.Social
         /// Check if the user is on mobile browser
         /// </summary>
         /// <returns>True/False</returns>
-        public static bool IsMobileBrowser()
+        public static static bool IsMobileBrowser()
         {
             bool status = false;
             string u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
