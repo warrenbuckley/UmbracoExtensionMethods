@@ -56,6 +56,7 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// <param name="width">The desired width of the iframe.</param>
         /// <param name="height">The desired height of the iframe.</param>
         public static string YouTubeEmbed(this string videoId, int width, int height) {
+            if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
             return String.Format(
                 "<iframe src=\"{0}\" width=\"{1}\" height=\"{2}\" frameborder=\"0\" allowfullscreen></iframe>",
                 "http://www.youtube.com/embed/" + videoId,
@@ -78,12 +79,36 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// parameter to <var>transarent</var> will solve most
         /// of these issues.</param>
         public static string YouTubeEmbed(this string videoId, int width, int height, bool showRelations, string wmode) {
+            if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
             return String.Format(
                 "<iframe src=\"{0}\" width=\"{1}\" height=\"{2}\" frameborder=\"0\" allowfullscreen></iframe>",
                 "http://www.youtube.com/embed/" + videoId + "?rel=" + (showRelations ? 1 : 0) + "&wmode=" + wmode,
                 width,
                 height
             );
+        }
+
+        /// <summary>
+        /// Gets the default thumbnail URL for a video with the specified ID. The default
+        /// thumbnail measures 480x360 pixels.
+        /// </summary>
+        /// <param name="videoId">The ID of the video.</param>
+        /// <returns>The thumbnail URL if the video ID is valid, otherwise <var>NULL</var>.</returns>
+        public static string GetYouTubeThumbnail(this string videoId) {
+            return GetYouTubeThumbnail(videoId, 0);
+        }
+
+        /// <summary>
+        /// Gets the thumbnail URL for a video with the specified ID. The default thumbnail (index = 0)
+        /// measures 480x360 pixels, while the others measures 120x90 pixels.
+        /// </summary>
+        /// <param name="videoId">The ID of the video.</param>
+        /// <param name="index">The index of the thumbnail URL to return
+        /// (valid range is from 0 to 3 - both inclusive).</param>
+        /// <returns>The thumbnail URL if the video ID is valid, otherwise <var>NULL</var>.</returns>
+        public static string GetYouTubeThumbnail(this string videoId, int index) {
+            if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
+            return "http://i.ytimg.com/vi/" + videoId + "/" + index + ".jpg";
         }
 
     }
