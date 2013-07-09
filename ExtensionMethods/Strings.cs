@@ -235,5 +235,19 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             return output;
         }
 
+        /// <summary>
+        /// Safely truncate any string to a predetermined length and preserve whole words when truncating
+        /// </summary>
+        /// <param name="textToTruncate">Text to truncate</param>
+        /// <param name="length">Length</param>
+        /// <returns></returns>
+        public static string TruncateAtWord(this string textToTruncate, int length)
+        {
+            if (textToTruncate == null || textToTruncate.Length < length)
+                return textToTruncate;
+            int iNextSpace = textToTruncate.LastIndexOf(" ", length);
+            return string.Format("{0}...", textToTruncate.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+        }
+
     }
 }
