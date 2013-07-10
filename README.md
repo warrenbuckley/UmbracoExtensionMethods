@@ -78,7 +78,14 @@ This is a community project to create a library of Umbraco Extension Methods to 
 * .
 
 ## Vimeo
-* VimeoEmbed(int width, int height)
+* string VimeoEmbed(this int vimeoId, int width, int height)
+* string VimeoEmbed(this string vimeoId, int width, int height)
+* int GetVimeoDuration(this int vimeoId)
+* int GetVimeoDuration(this string vimeoId)
+* string GetVimeoThumbnail(this int vimeoId)
+* string GetVimeoThumbnail(this string vimeoId)
+* string GetVimeoThumbnail(this int vimeoId, VimeoThumbnail size)
+* string GetVimeoThumbnail(this string vimeoId, VimeoThumbnail size)
 
 
 ## YouTube
