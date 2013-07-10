@@ -31,8 +31,12 @@ This is a community project to create a library of Umbraco Extension Methods to 
 * PrettyDate()
 * FormatDateTime(string format) `FormatDateTime("ddd ddS MMMM yyyy")` note the S for suffix
 * GetMonthName()
+* GetDayName()
 
+## Numeric
 
+* ToInt()
+* AbsoluteValue()
 
 ## DocumentTypes
 * .
