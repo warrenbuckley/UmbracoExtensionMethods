@@ -17,7 +17,6 @@ This is a community project to create a library of Umbraco Extension Methods to 
 * .
 
 ## Dates
-Kudos to the uComponents team for these methods. So kudos for these methods go to them.
 
 * Age()
 * GetDayNumber()
