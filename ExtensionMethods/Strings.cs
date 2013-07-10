@@ -28,7 +28,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// Uppercases the first character of a string
         /// </summary>
         /// <param name="input">The string which first character should be uppercased</param>
-        /// <returns>The input string with it's first character uppercased</returns>
+        /// <returns>The input string with it'input first character uppercased</returns>
         public static string FirstCharToUpper(this string input)
         {
             return string.Concat(input.Substring(0, 1).ToUpper(), input.Substring(1));
@@ -247,6 +247,18 @@ namespace Umbraco.Community.ExtensionMethods.Strings
                 return textToTruncate;
             int iNextSpace = textToTruncate.LastIndexOf(" ", length);
             return string.Format("{0}...", textToTruncate.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+        }
+
+        /// <summary>
+        /// Inverts the case of each character in the given string and returns the new string
+        /// </summary>
+        /// <param name="input">The given string</param>
+        /// <returns>The converted string</returns>
+        public static string InvertCase(this string input)
+        {
+            return new string(
+            input.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ?
+                      char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
         }
 
     }

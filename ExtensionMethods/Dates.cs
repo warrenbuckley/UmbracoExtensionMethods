@@ -320,12 +320,13 @@ namespace Umbraco.Community.ExtensionMethods.Dates
 
 
         /// <summary>
-        /// Transform an integer between 1 and 12 into month name.
+        /// Return the name of the month for a given date.
         /// </summary>
-        /// <param name="month">Month</param>
+        /// <param name="date"></param>
         /// <returns></returns>
-        public static string GetMonthName(int month)
+        public static string GetMonthName(this DateTime date)
         {
+            var month = date.Month;
             string monthName = "";
             if (month > 0)
             {
