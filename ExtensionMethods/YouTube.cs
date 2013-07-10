@@ -1,16 +1,19 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Umbraco.Community.ExtensionsMethods {
-    
-    public static class YouTube {
+namespace Umbraco.Community.ExtensionsMethods
+{
+
+    public static class YouTube
+    {
 
         /// <summary>
         /// Uses regular expressions for finding a YouTube video ID in the string.
         /// </summary>
         /// <param name="subject">The string to search.</param>
         /// <returns>The YouTube video ID if found, otherwise <var>NULL</var>.</returns>
-        public static string GetYouTubeId(this string subject) {
+        public static string GetYouTubeId(this string subject)
+        {
             Match m1 = Regex.Match(subject, "^((\\w|-){11}$)");
             Match m2 = Regex.Match(subject, "v=((\\w|-){11})");
             Match m3 = Regex.Match(subject, "\\/((\\w|-){11})$");
@@ -23,23 +26,27 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// <param name="subject">The string to search.</param>
         /// <param name="videoId">The YouTube video ID if found, otherwise <var>NULL</var>.</param>
         /// <returns>Returns <var>TRUE</var> if a video ID is found, otherwise <var>FALSE</var>.</returns>
-        public static bool GetYouTubeId(this string subject, out string videoId) {
-            
+        public static bool GetYouTubeId(this string subject, out string videoId)
+        {
+
             Match m1 = Regex.Match(subject, "^((\\w|-){11}$)");
             Match m2 = Regex.Match(subject, "v=((\\w|-){11})");
             Match m3 = Regex.Match(subject, "\\/((\\w|-){11})$");
 
-            if (m1.Success) {
+            if (m1.Success)
+            {
                 videoId = m1.Groups[1].Value;
                 return true;
             }
 
-            if (m2.Success) {
+            if (m2.Success)
+            {
                 videoId = m2.Groups[1].Value;
                 return true;
             }
 
-            if (m3.Success) {
+            if (m3.Success)
+            {
                 videoId = m3.Groups[1].Value;
                 return true;
             }
@@ -47,23 +54,6 @@ namespace Umbraco.Community.ExtensionsMethods {
             videoId = null;
             return false;
 
-        /// <summary>
-        /// This will return the ID part of Youtube URLs
-        /// </summary>
-        /// <param name="url">video url</param>
-        /// <returns>video id</returns>
-        public static string GetYoutubeId(string url)
-        {
-            // Example: http://www.youtube.com/watch?v=MD5nU7kt7pg will return MD5nU7kt7pg
-
-            string id = string.Empty;
-            Regex youtubeVideoRegex = new Regex(@"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
-            Match youtubeMatch = youtubeVideoRegex.Match(url);
-            if (youtubeMatch.Success)
-                id = youtubeMatch.Groups[1].Value;
-            return id;
-        }
-        
         }
 
         /// <summary>
@@ -72,7 +62,8 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// <param name="videoId">The YouTube ID of the video.</param>
         /// <param name="width">The desired width of the iframe.</param>
         /// <param name="height">The desired height of the iframe.</param>
-        public static string YouTubeEmbed(this string videoId, int width, int height) {
+        public static string YouTubeEmbed(this string videoId, int width, int height)
+        {
             if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
             return String.Format(
                 "<iframe src=\"{0}\" width=\"{1}\" height=\"{2}\" frameborder=\"0\" allowfullscreen></iframe>",
@@ -95,7 +86,8 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// play well with layers (mostly in IE). Setting this
         /// parameter to <var>transarent</var> will solve most
         /// of these issues.</param>
-        public static string YouTubeEmbed(this string videoId, int width, int height, bool showRelations, string wmode) {
+        public static string YouTubeEmbed(this string videoId, int width, int height, bool showRelations, string wmode)
+        {
             if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
             return String.Format(
                 "<iframe src=\"{0}\" width=\"{1}\" height=\"{2}\" frameborder=\"0\" allowfullscreen></iframe>",
@@ -111,7 +103,8 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// </summary>
         /// <param name="videoId">The ID of the video.</param>
         /// <returns>The thumbnail URL if the video ID is valid, otherwise <var>NULL</var>.</returns>
-        public static string GetYouTubeThumbnail(this string videoId) {
+        public static string GetYouTubeThumbnail(this string videoId)
+        {
             return GetYouTubeThumbnail(videoId, 0);
         }
 
@@ -123,7 +116,8 @@ namespace Umbraco.Community.ExtensionsMethods {
         /// <param name="index">The index of the thumbnail URL to return
         /// (valid range is from 0 to 3 - both inclusive).</param>
         /// <returns>The thumbnail URL if the video ID is valid, otherwise <var>NULL</var>.</returns>
-        public static string GetYouTubeThumbnail(this string videoId, int index) {
+        public static string GetYouTubeThumbnail(this string videoId, int index)
+        {
             if (!Regex.IsMatch(videoId, "^[\\w|-]{11}$")) return null;
             return "http://i.ytimg.com/vi/" + videoId + "/" + index + ".jpg";
         }
