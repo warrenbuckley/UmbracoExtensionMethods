@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -317,6 +318,22 @@ namespace Umbraco.Community.ExtensionMethods.Dates
             }
         }
 
+
+        /// <summary>
+        /// Return the name of the month for a given date.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static string GetMonthName(this DateTime date)
+        {
+            var month = date.Month;
+            string monthName = "";
+            if (month > 0)
+            {
+                monthName = month <= 12 ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month) : month.ToString();
+            }          
+            return monthName;
+        }
 
 
     }

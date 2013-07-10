@@ -31,6 +31,8 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 * GetLastDayOfMonth()
 * PrettyDate()
 * FormatDateTime(string format) `FormatDateTime("ddd ddS MMMM yyyy")` note the S for suffix
+* GetMonthName()
+
 
 
 ## DocumentTypes
@@ -62,6 +64,9 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 * ShortenHtml(int length = 300, string elipsis = "...")
 * GetSentence(sentenceIndex)
 * GetParagraph(paragraphIndex) 
+* TruncateAtWord(int length)
+* InvertCase()
+* 
 
 ## Templates
 * .
