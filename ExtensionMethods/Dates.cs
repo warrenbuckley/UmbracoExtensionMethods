@@ -318,23 +318,26 @@ namespace Umbraco.Community.ExtensionMethods.Dates
             }
         }
 
-
         /// <summary>
-        /// Return the name of the month for a given date.
+        /// Gets the month string of the given DateTime
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+        /// <param name="date">The DateTime object</param>
+        /// <returns>The string representation of month</returns>
+        /// <example>Returns "January" for the date 1.1.2013</example>
         public static string GetMonthName(this DateTime date)
         {
-            var month = date.Month;
-            string monthName = "";
-            if (month > 0)
-            {
-                monthName = month <= 12 ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month) : month.ToString();
-            }          
-            return monthName;
+            return date.ToString("MMMM");
         }
 
-
+        /// <summary>
+        /// Gets the day string of the given DateTime.
+        /// </summary>
+        /// <param name="date">The DateTime object</param>
+        /// <returns>The string representation of day</returns>
+        /// <example>Returns "Sunday" for the date 1.1.2013</example>
+        public static string GetDayName(this DateTime date)
+        {
+            return date.DayOfWeek.ToString();
+        }
     }
 }
