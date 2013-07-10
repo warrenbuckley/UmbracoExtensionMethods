@@ -334,5 +334,7 @@ namespace Umbraco.Community.ExtensionMethods.Dates
             }          
             return monthName;
         }
+
+
     }
 }
