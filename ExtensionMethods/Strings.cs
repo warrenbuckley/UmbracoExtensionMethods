@@ -96,7 +96,13 @@ namespace Umbraco.Community.ExtensionMethods.Strings
                 return rgx.Replace(input, string.Empty);
             }
             else
+                if (input != null){
                 return new Regex(_stripHTMLRegex, RegexOptions.Singleline).Replace(input, string.Empty);
+                }
+                else
+                {
+                    return String.Empty;
+                }
         }
 
         /// <summary>
@@ -222,17 +228,24 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <returns>The html without any comments tags</returns>
         private static string RemoveHtmlComments(this string input)
         {
-            string output = string.Empty;
-            string[] temp = Regex.Split(input, "<!--");
-            foreach (string s in temp)
+            if (input != null)
             {
-                var str = !s.Contains("-->") ? s : s.Substring(s.IndexOf("-->") + 3);
-                if (str.Trim() != string.Empty)
+                string output = string.Empty;
+                string[] temp = Regex.Split(input, "<!--");
+                foreach (string s in temp)
                 {
-                    output = output + str.Trim();
+                    var str = !s.Contains("-->") ? s : s.Substring(s.IndexOf("-->") + 3);
+                    if (str.Trim() != string.Empty)
+                    {
+                        output = output + str.Trim();
+                    }
                 }
+                return output;
             }
-            return output;
+            else
+            {
+                return String.Empty;
+            }
         }
 
         /// <summary>
