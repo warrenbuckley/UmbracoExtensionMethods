@@ -5,34 +5,37 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Umbraco.Core.Models;
+using Umbraco.Web;
 
 namespace Umbraco.Community.ExtensionMethods.ImageGen
 {
     public static class ImageGen
     {
+
         public static string ImageGenUrlFromMediaItem(this Core.Models.Media mediaItem,
-            ImageGenAlign? align,
-            bool? allowUpsizing,
-            bool? antiAlias,
-            int? border,
-            ImageGenColorMode? colorMode,
-            int? compression,
-            bool? constrain,
-            ImageGenFlip? flip,
-            int? fontSize,
-            ImageGenFontStyle? fontStyle,
-            ImageGenFormat? format,
-            int? height,
-            int? lineHeight,
-            int? maxHeight,
-            int? maxWidth,
-            bool? noCache,
-            int? overlayMargin,
-            bool? pad,
-            int? rotate,
-            bool? transparent,
-            ImageGenVAlign? vAlign,
-            int? width,
+            ImageGenAlign? align = null,
+            bool? allowUpsizing = null,
+            bool? antiAlias = null,
+            int? border = null,
+            ImageGenColorMode? colorMode = null,
+            int? compression = null,
+            bool? constrain = null,
+            ImageGenFlip? flip = null,
+            int? fontSize = null,
+            ImageGenFontStyle? fontStyle = null,
+            ImageGenFormat? format = null,
+            int? height = null,
+            int? lineHeight = null,
+            int? maxHeight = null,
+            int? maxWidth = null,
+            bool? noCache = null,
+            int? overlayMargin = null,
+            bool? pad = null,
+            int? rotate = null,
+            bool? transparent = null,
+            ImageGenVAlign? vAlign = null,
+            int? width = null,
             string altImage = "",
             string bgColor = "",
             string borderColor = "",
@@ -48,7 +51,7 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
             if (!string.IsNullOrEmpty(mediaImage))
             {
                 //Now call the main ImageGen method with our values
-                ImageGenURL(mediaImage,
+                ImageGenUrl(mediaImage,
                     align,
                     allowUpsizing,
                     antiAlias,
@@ -85,30 +88,30 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
         }
 
         //ImageGen URL Helper
-        public static string ImageGenURL(
-            this string imageURL, 
-            ImageGenAlign? align,
-            bool? allowUpsizing,
-            bool? antiAlias,
-            int? border,
-            ImageGenColorMode? colorMode,
-            int? compression,
-            bool? constrain,
-            ImageGenFlip? flip,
-            int? fontSize,
-            ImageGenFontStyle? fontStyle,
-            ImageGenFormat? format,
-            int? height,
-            int? lineHeight,
-            int? maxHeight,
-            int? maxWidth,
-            bool? noCache,
-            int? overlayMargin,
-            bool? pad,
-            int? rotate,
-            bool? transparent,
-            ImageGenVAlign? vAlign,
-            int? width,
+        public static string ImageGenUrl(
+            this string imageUrl, 
+            ImageGenAlign? align = null,
+            bool? allowUpsizing = null,
+            bool? antiAlias = null,
+            int? border = null,
+            ImageGenColorMode? colorMode = null,
+            int? compression = null,
+            bool? constrain = null,
+            ImageGenFlip? flip = null,
+            int? fontSize = null,
+            ImageGenFontStyle? fontStyle = null,
+            ImageGenFormat? format = null,
+            int? height = null,
+            int? lineHeight = null,
+            int? maxHeight = null,
+            int? maxWidth = null,
+            bool? noCache = null,
+            int? overlayMargin = null,
+            bool? pad = null,
+            int? rotate = null,
+            bool? transparent = null,
+            ImageGenVAlign? vAlign = null,
+            int? width = null,
             string altImage = "",
             string bgColor = "",
             string borderColor = "",
@@ -120,55 +123,55 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
         {
 
             //Base URL to ImageGen ashx handler
-            var baseURL = "/imagegen.ashx?";
+            var baseUrl = "/imagegen.ashx?image=" + imageUrl;
 
 
             //Align (Left, Center, Right, Near, Far)
             if (align != null)
             {
-                baseURL += string.Format("&Align={0}", align);
+                baseUrl += string.Format("&Align={0}", align);
             }
 
             //Allow Upsizing (True False)
             if (allowUpsizing != null)
             {
-                baseURL += string.Format("&AllowUpsizing={0}", allowUpsizing);
+                baseUrl += string.Format("&AllowUpsizing={0}", allowUpsizing);
             }
 
             //Alt Image (/photos/waterfall.png)
             if (!string.IsNullOrEmpty(altImage))
             {
-                baseURL += string.Format("&AltImage={0}", altImage);
+                baseUrl += string.Format("&AltImage={0}", altImage);
             }
 
             //AntiAlias (True of False)
             if (antiAlias != null)
             {
-                baseURL += string.Format("&AntiAlias={0}", antiAlias);
+                baseUrl += string.Format("&AntiAlias={0}", antiAlias);
             }
 
             //BgColor (FFFFFF)
             if (!string.IsNullOrEmpty(bgColor))
             {
-                baseURL += string.Format("&BgColor={0}", bgColor);
+                baseUrl += string.Format("&BgColor={0}", bgColor);
             }
 
             //Border (15)
             if (border != null)
             {
-                baseURL += string.Format("&Border={0}", border);
+                baseUrl += string.Format("&Border={0}", border);
             }
 
             //BgColor (000000)
             if (!string.IsNullOrEmpty(borderColor))
             {
-                baseURL += string.Format("&BorderColor={0}", borderColor);
+                baseUrl += string.Format("&BorderColor={0}", borderColor);
             }
 
             //Color Mode (enum)
             if (colorMode != null)
             {
-                baseURL += string.Format("&ColorMode={0}", colorMode);
+                baseUrl += string.Format("&ColorMode={0}", colorMode);
             }
 
             //Compression 0 to 100 %
@@ -184,13 +187,13 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
                     compression = 0;
                 }
 
-                baseURL += string.Format("&Compression={0}", compression);
+                baseUrl += string.Format("&Compression={0}", compression);
             }
 
             //Constrain (true/false)
             if(constrain != null)
             {
-                baseURL += string.Format("&Constrain={0}", constrain);
+                baseUrl += string.Format("&Constrain={0}", constrain);
             }
 
             //CROP - TODO?!
@@ -198,7 +201,7 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
             //Flip (x,y,xy)
             if (flip != null)
             {
-                baseURL += string.Format("&Flip={0}", flip);
+                baseUrl += string.Format("&Flip={0}", flip);
             }
 
 
@@ -208,7 +211,7 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
             //Height (int)
             if (height != null)
             {
-                baseURL += string.Format("&Height={0}", height);
+                baseUrl += string.Format("&Height={0}", height);
             }
             
 
@@ -231,36 +234,36 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
                     rotate = -360;
                 }
 
-                baseURL += string.Format("&Rotate={0}", rotate);
+                baseUrl += string.Format("&Rotate={0}", rotate);
             }
             
 
             //Transparent (Bool True of False)
             if (transparent != null)
             {
-                baseURL += string.Format("&Transparent={0}", transparent);
+                baseUrl += string.Format("&Transparent={0}", transparent);
             }
             
 
             //VAlign (Enum Top, Middle, Bottom, Near, Far)
             if (vAlign != null)
             {
-                baseURL += string.Format("&VAlign={0}", vAlign);
+                baseUrl += string.Format("&VAlign={0}", vAlign);
             }
             
 
             //Width (int)
             if (width != null)
             {
-                baseURL += string.Format("&Width={0}", width);
+                baseUrl += string.Format("&Width={0}", width);
             }
-            
 
-            //URL encode baseURL to ensure it's all OK
-            baseURL = HttpUtility.UrlEncode(baseURL);
+
+            //URL encode baseUrl to ensure it's all OK
+            baseUrl = HttpUtility.HtmlEncode(baseUrl);
 
             //return the URL thats been built up
-            return baseURL;
+            return baseUrl;
         }
 
     }
@@ -301,12 +304,12 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
         /// </summary>
         Color,
 
-        // <summary>
+        /// <summary>
         /// Makes image in Grayscale
         /// </summary>
         Grayscale,
 
-        // <summary>
+        /// <summary>
         /// Makes image in Sepia
         /// </summary>
         Sepia 

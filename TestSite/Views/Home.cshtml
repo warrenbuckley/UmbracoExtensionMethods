@@ -2,6 +2,7 @@
 @using Umbraco.Community.ExtensionMethods.Dates
 @using Umbraco.Community.ExtensionMethods.Social
 @using Umbraco.Community.ExtensionMethods.Strings;
+@using Umbraco.Community.ExtensionMethods.ImageGen;
 @using umbraco.BusinessLogic;
 @using Umbraco.Core;
 
@@ -15,6 +16,9 @@
     var email = "warren@creativewebspecialist.co.uk";
 
     var vimeoID = "17687260";
+
+    var myMediaItem = Umbraco.TypedMedia(1049);    
+    
 }
 
 <h1>Date Tests</h1>
@@ -45,3 +49,7 @@
 <h1>Strings</h1>
 <h2>Get Sentence 3: @bodyText.GetSentence(2)</h2>
 <h2>Get Paragraph 4:</h2> @Html.Raw(bodyText.GetParagraph(0))
+
+<h1>ImageGen</h1>
+@(myMediaItem.GetPropertyValue<string>("umbracoFile"))
+<h2>@ImageGen.ImageGenUrl(myMediaItem.GetPropertyValue<string>("umbracoFile"),align:ImageGenAlign.Center)</h2>
