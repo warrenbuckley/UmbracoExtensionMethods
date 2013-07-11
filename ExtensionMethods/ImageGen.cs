@@ -81,10 +81,9 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
                     overlayImage,
                     text);
             }
-            else
-            {
-                return string.Empty;
-            }
+
+            //Couldn't find the value on the media item, so return empty string
+            return string.Empty;
         }
 
         //ImageGen URL Helper
