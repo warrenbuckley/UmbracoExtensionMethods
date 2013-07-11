@@ -209,6 +209,7 @@
     <Compile Include="Templates.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Vimeo\ExtensionMethods\VimeoExtensionMethods.cs" />
+    <Compile Include="Linq\Xml\ExtensionMethods\LinqXmlExtensionMethods.cs" />
     <Compile Include="Vimeo\VimeoHelpers.cs" />
     <Compile Include="Vimeo\VimeoThumbnail.cs" />
     <Compile Include="Vimeo\VimeoVideo.cs" />
