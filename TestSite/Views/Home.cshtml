@@ -53,3 +53,4 @@
 <h1>ImageGen</h1>
 @(myMediaItem.GetPropertyValue<string>("umbracoFile"))
 <h2>@ImageGen.ImageGenUrl(myMediaItem.GetPropertyValue<string>("umbracoFile"),align:ImageGenAlign.Center)</h2>
+<h2>@myMediaItem.ImageGenUrl(align:ImageGenAlign.Center)</h2>
