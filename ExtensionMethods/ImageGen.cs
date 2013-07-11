@@ -5,6 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -13,7 +14,7 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
     public static class ImageGen
     {
 
-        public static string ImageGenUrlFromMediaItem(this Core.Models.Media mediaItem,
+        public static string ImageGenUrl(this IPublishedContent mediaItem,
             ImageGenAlign? align = null,
             bool? allowUpsizing = null,
             bool? antiAlias = null,
@@ -42,16 +43,22 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
             string font = "",
             string fontColor = "",
             string overlayImage = "",
-            string text = "")
+            string text = "",
+            string uploadPropertyAlias = "umbracoFile"
+            )
         {
             //Try and get image upload property alias on media item (umbracoFile)
-            var mediaImage = mediaItem.GetValue("umbracoFile").ToString();
+            var mediaImage = String.Empty;
+            if (mediaItem.HasProperty("umbracoFile"))
+            {
+                mediaImage = mediaItem.GetPropertyValue<string>("umbracoFile");
+            }
 
             //Check we have a value
             if (!string.IsNullOrEmpty(mediaImage))
             {
                 //Now call the main ImageGen method with our values
-                ImageGenUrl(mediaImage,
+                return ImageGenUrl(mediaImage,
                     align,
                     allowUpsizing,
                     antiAlias,
