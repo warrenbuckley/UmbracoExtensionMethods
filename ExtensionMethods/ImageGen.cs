@@ -49,9 +49,9 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
         {
             //Try and get image upload property alias on media item (umbracoFile)
             var mediaImage = String.Empty;
-            if (mediaItem.HasProperty("umbracoFile"))
+            if (mediaItem.HasProperty(uploadPropertyAlias))
             {
-                mediaImage = mediaItem.GetPropertyValue<string>("umbracoFile");
+                mediaImage = mediaItem.GetPropertyValue<string>(uploadPropertyAlias);
             }
 
             //Check we have a value
