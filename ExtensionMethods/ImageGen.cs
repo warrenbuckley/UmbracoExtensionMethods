@@ -5,8 +5,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using umbraco.cms.businesslogic.skinning.dependencies;
-using Umbraco.Core.Models;
 
 namespace Umbraco.Community.ExtensionMethods.ImageGen
 {
@@ -43,8 +41,8 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
             string overlayImage = "",
             string text = "")
         {
-            //Try and get image upload property alias on media item
-            var mediaImage = mediaItem.GetValue("").ToString();
+            //Try and get image upload property alias on media item (umbracoFile)
+            var mediaImage = mediaItem.GetValue("umbracoFile").ToString();
 
             //Check we have a value
             if (!string.IsNullOrEmpty(mediaImage))
