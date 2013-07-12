@@ -13,7 +13,41 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
 {
     public static class ImageGen
     {
-
+        /// <summary>
+        /// Generate an ImageGen URL from a Media Item
+        /// </summary>
+        /// <param name="mediaItem">The media item (iPublishedContent)</param>
+        /// <param name="align">The horizontal alignment of the overlay image or text</param>
+        /// <param name="allowUpsizing">Allow the image to be upsized</param>
+        /// <param name="antiAlias">Boolean to allow the image to be Anti Aliased</param>
+        /// <param name="border">Pass in a int to specifiy the border width</param>
+        /// <param name="colorMode">The colour mode of the image (colour, greyscale, sepia)</param>
+        /// <param name="compression">A percentage scale of the amount of compression to apply to the image</param>
+        /// <param name="constrain">A boolean if to constrain the width and height of the image</param>
+        /// <param name="flip">Apply x, y or x & y flipping of the image</param>
+        /// <param name="fontSize">An int of the size of the font to be applied to the image</param>
+        /// <param name="fontStyle">The font style such as bold, italic to be applied to the image</param>
+        /// <param name="format">The output format of the image to be served, such as gif, jpb, png or tiff</param>
+        /// <param name="height">The height of the image you want it to be resized to</param>
+        /// <param name="lineHeight">An int of the lineheight used in conjuction with text & font params</param>
+        /// <param name="maxHeight">An int of the max height of the image</param>
+        /// <param name="maxWidth">An int of the max width of the image</param>
+        /// <param name="noCache">A boolean to ensure the image is not cached</param>
+        /// <param name="overlayMargin">An int to apply a margin to the overlay item, such as text or image</param>
+        /// <param name="pad">An int to apply padding to the image</param>
+        /// <param name="rotate">The number of degrees to rotate the image by</param>
+        /// <param name="transparent">A bool to ensure the image is returned as transparent or not</param>
+        /// <param name="vAlign">The vertical alignment of the overlay image or text</param>
+        /// <param name="width">The width of the image you want it to be resized to</param>
+        /// <param name="altImage">A path to an alternative image if the original image is not found</param>
+        /// <param name="bgColor">The string of the Hexadecimal color value for the background of the image</param>
+        /// <param name="borderColor">The string of the Hexadecimal color value for the border color</param>
+        /// <param name="font">The path or the name of the font installed on the server</param>
+        /// <param name="fontColor">The string of the Hexadecimal color value for the font</param>
+        /// <param name="overlayImage">A path to the image you wish to display over the top of the image, such as PNG watermark</param>
+        /// <param name="text">The text you wish to display over the top of the image</param>
+        /// <param name="uploadPropertyAlias">If you are using a custom media type and need to change the upload property alias to something else apart from umbracoFile</param>
+        /// <returns>A string to the ImageGen Url with the parameters passed in</returns>
         public static string ImageGenUrl(this IPublishedContent mediaItem,
             ImageGenAlign? align = null,
             bool? allowUpsizing = null,
@@ -95,6 +129,40 @@ namespace Umbraco.Community.ExtensionMethods.ImageGen
         }
 
         //ImageGen URL Helper
+        /// <summary>
+        /// Generate an ImageGen URL from a Media Item
+        /// </summary>
+        /// <param name="imageUrl">The string that is storing the image path</param>
+        /// <param name="align">The horizontal alignment of the overlay image or text</param>
+        /// <param name="allowUpsizing">Allow the image to be upsized</param>
+        /// <param name="antiAlias">Boolean to allow the image to be Anti Aliased</param>
+        /// <param name="border">Pass in a int to specifiy the border width</param>
+        /// <param name="colorMode">The colour mode of the image (colour, greyscale, sepia)</param>
+        /// <param name="compression">A percentage scale of the amount of compression to apply to the image</param>
+        /// <param name="constrain">A boolean if to constrain the width and height of the image</param>
+        /// <param name="flip">Apply x, y or x & y flipping of the image</param>
+        /// <param name="fontSize">An int of the size of the font to be applied to the image</param>
+        /// <param name="fontStyle">The font style such as bold, italic to be applied to the image</param>
+        /// <param name="format">The output format of the image to be served, such as gif, jpb, png or tiff</param>
+        /// <param name="height">The height of the image you want it to be resized to</param>
+        /// <param name="lineHeight">An int of the lineheight used in conjuction with text & font params</param>
+        /// <param name="maxHeight">An int of the max height of the image</param>
+        /// <param name="maxWidth">An int of the max width of the image</param>
+        /// <param name="noCache">A boolean to ensure the image is not cached</param>
+        /// <param name="overlayMargin">An int to apply a margin to the overlay item, such as text or image</param>
+        /// <param name="pad">An int to apply padding to the image</param>
+        /// <param name="rotate">The number of degrees to rotate the image by</param>
+        /// <param name="transparent">A bool to ensure the image is returned as transparent or not</param>
+        /// <param name="vAlign">The vertical alignment of the overlay image or text</param>
+        /// <param name="width">The width of the image you want it to be resized to</param>
+        /// <param name="altImage">A path to an alternative image if the original image is not found</param>
+        /// <param name="bgColor">The string of the Hexadecimal color value for the background of the image</param>
+        /// <param name="borderColor">The string of the Hexadecimal color value for the border color</param>
+        /// <param name="font">The path or the name of the font installed on the server</param>
+        /// <param name="fontColor">The string of the Hexadecimal color value for the font</param>
+        /// <param name="overlayImage">A path to the image you wish to display over the top of the image, such as PNG watermark</param>
+        /// <param name="text">The text you wish to display over the top of the image</param>
+        /// <returns>A string to the ImageGen Url with the parameters passed in</returns>
         public static string ImageGenUrl(
             this string imageUrl, 
             ImageGenAlign? align = null,
