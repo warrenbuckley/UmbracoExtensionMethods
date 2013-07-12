@@ -47,6 +47,7 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 * StripHTML(bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
 * ShortenHTML(out bool inputIsShortened, int length = 300, string elipsis = "...")
 * ShortenHTML(int length = 300, string elipsis = "...")
+* RemoveDiacritics(string input)
 
 ## Templates
 * .
