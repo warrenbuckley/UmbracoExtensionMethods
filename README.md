@@ -56,7 +56,11 @@ Kudos to the uComponents team for these methods. So kudos for these methods go t
 * RenderUserControl(this string path, Dictionary<string, object> propertiesToSet = null)
 
 ## Users
-* .
+* GetAllUsers()
+* GetUsersByType(int userTypeId)
+* GetUsersByType(string typeAlias)
+* GetCurrentUserTypes()
+* GetCurrentUser()
 
 
 ## Do you have any ideas?
