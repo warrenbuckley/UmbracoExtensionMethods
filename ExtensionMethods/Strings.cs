@@ -29,7 +29,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// Uppercases the first character of a string
         /// </summary>
         /// <param name="input">The string which first character should be uppercased</param>
-        /// <returns>The input string with it's first character uppercased</returns>
+        /// <returns>The input string with it'input first character uppercased</returns>
         public static string FirstCharToUpper(this string input)
         {
             return string.Concat(input.Substring(0, 1).ToUpper(), input.Substring(1));
@@ -97,7 +97,13 @@ namespace Umbraco.Community.ExtensionMethods.Strings
                 return rgx.Replace(input, string.Empty);
             }
             else
+                if (input != null){
                 return new Regex(_stripHTMLRegex, RegexOptions.Singleline).Replace(input, string.Empty);
+                }
+                else
+                {
+                    return String.Empty;
+                }
         }
 
         /// <summary>
@@ -199,6 +205,96 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             }
 
             return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+
+        /// Returns a particular sentence by splitting by fullstop, question mark and exclamation mark
+        /// </summary>
+        /// <param name="textToSplit">The string</param>
+        /// <param name="sentenceIndex">The index of the sentence to return</param>
+        /// <returns>The single sentence requested</returns>
+        public static string GetSentence(this string textToSplit, int sentenceIndex)
+        {
+            string[] delim = { ".", "!", "?" };
+            string[] splitText = textToSplit.StripHtml(false,false,false,false,false).Split(delim, StringSplitOptions.None);
+            var sentanceCount = splitText.Length;
+            if (sentanceCount >= sentenceIndex)
+            {
+                return splitText[sentenceIndex] + ".";
+            }
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// Returns a particular paragraph by splitting by p tag
+        /// </summary>
+        /// <param name="textToSplit">The HTML formatted string</param>
+        /// <param name="paragraphIndex">The index of the paragraph to return</param>
+        /// <returns>The single paragraph requested</returns>
+        public static string GetParagraph(this string textToSplit, int paragraphIndex)
+        {
+            string[] delim = { "<p>" };
+            string[] splitText = textToSplit.RemoveHtmlComments().StripHtml(true,true,true,true,true,new List<string>{"a"}).Split(delim, StringSplitOptions.RemoveEmptyEntries);
+            int paragraphCount = splitText.Length;
+
+            if (paragraphCount-1 >= paragraphIndex)
+            {
+                var endPos = splitText[paragraphIndex].IndexOf("</p>");
+                return "<p>" + splitText[paragraphIndex].Substring(0, endPos + 4);
+        }
+            return "<p></p>";
+        }
+
+        /// <summary>
+        /// Strips out html comment tags
+        /// </summary>
+        /// <param name="input">The HTML formatted string</param>
+        /// <returns>The html without any comments tags</returns>
+        private static string RemoveHtmlComments(this string input)
+        {
+            if (input != null)
+            {
+                string output = string.Empty;
+                string[] temp = Regex.Split(input, "<!--");
+                foreach (string s in temp)
+                {
+                    var str = !s.Contains("-->") ? s : s.Substring(s.IndexOf("-->") + 3);
+                    if (str.Trim() != string.Empty)
+                    {
+                        output = output + str.Trim();
+                    }
+                }
+                return output;
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Safely truncate any string to a predetermined length and preserve whole words when truncating
+        /// </summary>
+        /// <param name="textToTruncate">Text to truncate</param>
+        /// <param name="length">Length</param>
+        /// <returns></returns>
+        public static string TruncateAtWord(this string textToTruncate, int length)
+        {
+            if (textToTruncate == null || textToTruncate.Length < length)
+                return textToTruncate;
+            int iNextSpace = textToTruncate.LastIndexOf(" ", length);
+            return string.Format("{0}...", textToTruncate.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+        }
+
+        /// <summary>
+        /// Inverts the case of each character in the given string and returns the new string
+        /// </summary>
+        /// <param name="input">The given string</param>
+        /// <returns>The converted string</returns>
+        public static string InvertCase(this string input)
+        {
+            return new string(
+            input.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ?
+                      char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
         }
     }
 }

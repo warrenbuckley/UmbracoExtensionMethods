@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -75,7 +76,7 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         /// </summary>
         /// <param name="day">The date</param>
         /// <returns>
-        /// 	<c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsWeekday(this DateTime date)
         {
@@ -156,13 +157,8 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         /// <returns>
         /// Return the total number of seconds between Unix epoch and the specified date/time.
         /// </returns>
-        public static double ToUnixTime(this DateTime date)
-        {
-            // set the Unix epoch
-            var unixEpoch = new DateTime(1970, 1, 1);
-
-            // return the total seconds (from either specified date or current date/time).
-            return (date - unixEpoch).TotalSeconds;
+        public static double ToUnixTime(this DateTime date) {
+            return (date.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
         }
 
         /// <summary>
@@ -322,7 +318,26 @@ namespace Umbraco.Community.ExtensionMethods.Dates
             }
         }
 
+        /// <summary>
+        /// Gets the month string of the given DateTime
+        /// </summary>
+        /// <param name="date">The DateTime object</param>
+        /// <returns>The string representation of month</returns>
+        /// <example>Returns "January" for the date 1.1.2013</example>
+        public static string GetMonthName(this DateTime date)
+        {
+            return date.ToString("MMMM");
+        }
 
-
+        /// <summary>
+        /// Gets the day string of the given DateTime.
+        /// </summary>
+        /// <param name="date">The DateTime object</param>
+        /// <returns>The string representation of day</returns>
+        /// <example>Returns "Sunday" for the date 1.1.2013</example>
+        public static string GetDayName(this DateTime date)
+        {
+            return date.DayOfWeek.ToString();
+        }
     }
 }
