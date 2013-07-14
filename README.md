@@ -62,6 +62,10 @@ This is a community project to create a library of Umbraco Extension Methods to 
 ## Strings
 * FirstCharToUpper()
 * HighlightKeywords(IEnumerable<string> keywords, string className)
+* StripHTML(bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
+* ShortenHTML(out bool inputIsShortened, int length = 300, string elipsis = "...")
+* ShortenHTML(int length = 300, string elipsis = "...")
+* RemoveDiacritics(string input)
 * StripHtml(bool ignoreParagraphs = true, bool ignoreItalic = true, bool ignoreUnderline = true, bool ignoreBold = true, bool ignoreLinebreak = true, List<string> otherTagsToIgnore = null)
 * ShortenHtml(out bool inputIsShortened, int length = 300, string elipsis = "...")
 * ShortenHtml(int length = 300, string elipsis = "...")
@@ -75,7 +79,11 @@ This is a community project to create a library of Umbraco Extension Methods to 
 * .
 
 ## Users
-* .
+* GetAllUsers()
+* GetUsersByType(int userTypeId)
+* GetUsersByType(string typeAlias)
+* GetCurrentUserTypes()
+* GetCurrentUser()
 
 ## Vimeo
 * string VimeoEmbed(this int vimeoId, int width, int height)

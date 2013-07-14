@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -184,6 +185,28 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         }
 
         /// <summary>
+        /// Removes diacritics from a string
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string RemoveDiacritics(string input)
+        {
+            // Indicates that a Unicode string is normalized using full canonical decomposition.
+            string inputInFormD = input.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            for (int idx = 0; idx < inputInFormD.Length; idx++)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(inputInFormD[idx]);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(inputInFormD[idx]);
+                }
+            }
+
+            return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+
         /// Returns a particular sentence by splitting by fullstop, question mark and exclamation mark
         /// </summary>
         /// <param name="textToSplit">The string</param>
@@ -273,6 +296,5 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             input.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ?
                       char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
         }
-
     }
 }
