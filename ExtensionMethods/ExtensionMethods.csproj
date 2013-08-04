@@ -214,6 +214,11 @@
     <Compile Include="Vimeo\VimeoThumbnail.cs" />
     <Compile Include="Vimeo\VimeoVideo.cs" />
     <Compile Include="YouTube.cs" />
+    <Compile Include="YouTube\ExtensionMethods\YouTubeExtensionMethods.cs" />
+    <Compile Include="YouTube\YouTubeChannel.cs" />
+    <Compile Include="YouTube\YouTubeChannelVideo.cs" />
+    <Compile Include="YouTube\YouTubeHelpers.cs" />
+    <Compile Include="YouTube\YouTubeVideo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
