@@ -62,5 +62,25 @@ namespace Umbraco.Community.ExtensionMethods.ASPNET
             HttpContext.Current.Server.Execute(pageHolder, output, false);
             return output.ToString();
         }
+
+        /// <summary>
+        /// Renders a control to a string.
+        /// </summary>
+        /// <param name="ctrl">The control to render.</param>
+        /// <returns>
+        /// Returns a string of the rendered control.
+        /// </returns>
+        public static string RenderControlToString(this Control ctrl)
+        {
+            var sb = new StringBuilder();
+
+            using (var tw = new StringWriter(sb))
+            using (var hw = new HtmlTextWriter(tw))
+            {
+                ctrl.RenderControl(hw);
+            }
+
+            return sb.ToString();
+        }
     }
 }
