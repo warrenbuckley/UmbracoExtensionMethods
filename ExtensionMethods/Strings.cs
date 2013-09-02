@@ -296,5 +296,51 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             input.Select(c => char.IsLetter(c) ? (char.IsUpper(c) ?
                       char.ToLower(c) : char.ToUpper(c)) : c).ToArray());
         }
+
+        /// <summary>
+        /// Returns the substring of string1 before the occurance of string2.
+        /// </summary>
+        /// <param name="string1">
+        /// The string 1.
+        /// </param>
+        /// <param name="string2">
+        /// The string 2.
+        /// </param>
+        /// <returns>
+        /// The substring
+        /// </returns>
+        public static string SubStringBefore(this string string1, string string2)
+        {
+            var posA = string1.IndexOf(string2);
+            if (posA != -1)
+            {
+                return string1.Substring(0, posA);
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Returns the substring of string1 aftger the occurance of string2
+        /// </summary>
+        /// <param name="string1">
+        /// The string 1.
+        /// </param>
+        /// <param name="string2">
+        /// The string 2.
+        /// </param>
+        /// <returns>
+        /// The substring
+        /// </returns>
+        public static string SubStringAfter(this string string1, string string2)
+        {
+            var posA = string1.IndexOf(string2);
+            if (posA != -1)
+            {
+                return string1.Substring(posA + 1);
+            }
+            return string.Empty;
+        }
+
+
     }
 }
