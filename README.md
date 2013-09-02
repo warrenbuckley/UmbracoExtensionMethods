@@ -73,7 +73,10 @@ This is a community project to create a library of Umbraco Extension Methods to 
 * GetParagraph(paragraphIndex) 
 * TruncateAtWord(int length)
 * InvertCase()
-* 
+* SubstringBefore(string string2)
+* SubstringAfter(string string2)
+
+
 
 ## Templates
 * .

@@ -309,7 +309,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <returns>
         /// The substring
         /// </returns>
-        public static string SubStringBefore(this string string1, string string2)
+        public static string SubstringBefore(this string string1, string string2)
         {
             var posA = string1.IndexOf(string2);
             if (posA != -1)
@@ -331,7 +331,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <returns>
         /// The substring
         /// </returns>
-        public static string SubStringAfter(this string string1, string string2)
+        public static string SubstringAfter(this string string1, string string2)
         {
             var posA = string1.IndexOf(string2);
             if (posA != -1)
