@@ -46,9 +46,14 @@
 <hr/>
 
 <h1>Users</h1>
+<hr/>
+
 <h1>Strings</h1>
 <h2>Get Sentence 3: @bodyText.GetSentence(2)</h2>
 <h2>Get Paragraph 4:</h2> @Html.Raw(bodyText.GetParagraph(0))
+<h2>SubstringBefore:</h2> @(Model.Content.GetPropertyValue<string>("simpleString").SubstringBefore("|"))
+<h2>SubstringAfter:</h2> @Strings.SubstringAfter(CurrentPage.simpleString,"|")
+<hr/>
 
 <h1>ImageGen</h1>
 @(myMediaItem.GetPropertyValue<string>("umbracoFile"))
