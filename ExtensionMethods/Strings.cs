@@ -298,7 +298,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         }
 
         /// <summary>
-        /// Returns the substring of string1 before the occurance of string2.
+        /// Returns the substring of string1 before the occurrence of string2.
         /// </summary>
         /// <param name="string1">
         /// The string 1.
@@ -320,7 +320,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         }
 
         /// <summary>
-        /// Returns the substring of string1 aftger the occurance of string2
+        /// Returns the substring of string1 after the occurrence of string2.
         /// </summary>
         /// <param name="string1">
         /// The string 1.
