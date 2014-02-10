@@ -10,7 +10,7 @@ using TidyNet;
 
 namespace Umbraco.Community.ExtensionMethods.Strings
 {
-    public static class Strings
+    public static class StringExtensionMethods
     {
         static readonly string _stripHTMLRegex = "<.+?>";
         static readonly string _stripHTMLRegexConditionalFormat = "<(?!({0})\\b)[^>]*>";
@@ -30,9 +30,8 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// </summary>
         /// <param name="input">The string which first character should be uppercased</param>
         /// <returns>The input string with it'input first character uppercased</returns>
-        public static string FirstCharToUpper(this string input)
-        {
-            return string.Concat(input.Substring(0, 1).ToUpper(), input.Substring(1));
+        public static string FirstCharToUpper(this string input) {
+            return String.IsNullOrEmpty(input) ? "" : String.Concat(input.Substring(0, 1).ToUpper(), input.Substring(1));
         }
 
         /// <summary>
