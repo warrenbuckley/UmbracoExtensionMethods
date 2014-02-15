@@ -21,19 +21,19 @@ namespace UnitTestProject {
         [TestMethod]
         public void FirstCharToUpper() {
 
-            Assert.AreEqual("".FirstCharToUpper(), "");
-            Assert.AreEqual("bacon".FirstCharToUpper(), "Bacon");
-            Assert.AreEqual("hello world".FirstCharToUpper(), "Hello world");
-            Assert.AreEqual("Hello World".FirstCharToUpper(), "Hello World");
+            Assert.AreEqual("", "".FirstCharToUpper());
+            Assert.AreEqual("Bacon", "bacon".FirstCharToUpper());
+            Assert.AreEqual("Hello world", "hello world".FirstCharToUpper());
+            Assert.AreEqual("Hello World", "Hello World".FirstCharToUpper());
 
         }
 
         [TestMethod]
         public void InvertCase() {
 
-            Assert.AreEqual("HelloWorld".InvertCase(), "hELLOwORLD");
-            Assert.AreEqual("helloworld".InvertCase(), "HELLOWORLD");
-            Assert.AreEqual("Bacon".InvertCase(), "bACON");
+            Assert.AreEqual("hELLOwORLD", "HelloWorld".InvertCase());
+            Assert.AreEqual("HELLOWORLD", "helloworld".InvertCase());
+            Assert.AreEqual("bACON", "Bacon".InvertCase());
 
         }
     
