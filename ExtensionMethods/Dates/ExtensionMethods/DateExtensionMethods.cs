@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Umbraco.Community.ExtensionMethods.Dates
+namespace Umbraco.Community.ExtensionMethods.Dates.ExtensionMethods
 {
     /// Kudos to uComponents - http://ucomponents.codeplex.com/SourceControl/latest#uComponents.XsltExtensions/Dates.cs
-    public static class Dates
+    public static class DateExtensionMethods
     {
 
         /// <summary>
@@ -25,100 +21,46 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         /// <returns>
         /// Returns the age based on the specified date of birth.
         /// </returns>
-        public static int Age(this DateTime dateOfBirth)
-        {
-            //Today's date
-            var today = DateTime.Today;
-           
-            // if month is less, or if month is equal, and day less
-            if (today.Month < dateOfBirth.Month || today.Month == dateOfBirth.Month && today.Day < dateOfBirth.Day)
-            {
-                // then they haven't had this year's birthday yet!
-                return today.Year - dateOfBirth.Year - 1;
-            }
-            else
-            {
-                // otherwise, substract the current year from date-of-birth.
-                return today.Year - dateOfBirth.Year;
-            }
-
-            // unable to parse date-of-birth.
-            return -1;
+        public static int Age(this DateTime dateOfBirth) {
+            return DateHelpers.GetAge(dateOfBirth);
         }
-
+        
         ///<summary>
-        /// Gets the Day number and ordinal suffix for a given date
+        /// Gets the Day number and ordinal suffix for a given date.
         ///</summary>
-        ///<param name="date">The date</param>
-        ///<returns>The day number and ordinal suffix</returns>
-        public static string GetDayNumber(this DateTime date)
-        {
-            switch (date.Day)
-            {
-                case 1:
-                case 21:
-                case 31:
-                    return date.Day + "st";
-                case 2:
-                case 22:
-                    return date.Day + "nd";
-                case 3:
-                case 23:
-                    return date.Day + "rd";
-                default:
-                    return date.Day + "th";
-            }
+        ///<param name="date">The date.</param>
+        ///<returns>The day number and ordinal suffix.</returns>
+        public static string GetDayNumber(this DateTime date) {
+            return DateHelpers.GetDayNumber(date);
         }
-
 
         /// <summary>
-        /// Determines whether the specified day is weekday.
+        /// Determines whether the specified date is weekday.
         /// </summary>
-        /// <param name="day">The date</param>
-        /// <returns>
-        ///     <c>true</c> if the specified day is weekday; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsWeekday(this DateTime date)
-        {
-            var day = date.DayOfWeek;
-
-            switch (day)
-            {
-                // is a weekend?
-                case DayOfWeek.Saturday:
-                case DayOfWeek.Sunday:
-                    return false;
-
-                // otherwise its a weekday?
-                default:
-                    return true;
-            }
+        /// <param name="date">The date.</param>
+        /// <returns>Returns <var>TRUE</var> if the specified day is weekday; otherwise <var>FALSE</var>.</returns>
+        public static bool IsWeekday(this DateTime date) {
+            return DateHelpers.IsWeekday(date);
         }
 
         /// <summary>
         /// Determines whether the specified date is weekend.
         /// </summary>
-        /// <param name="date">The date</param>
-        /// <returns>
-        /// 	<c>true</c> if the specified date is weekend; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool IsWeekend(this DateTime date)
-        {
-            return !IsWeekday(date);
+        /// <param name="date">The date.</param>
+        /// <returns>Returns <var>TRUE</var> if the specified day is weekend; otherwise <var>FALSE</var>.</returns>
+        public static bool IsWeekend(this DateTime date) {
+            return !DateHelpers.IsWeekday(date);
         }
 
-
         /// <summary>
-        /// Determines whether [is leap year] [the specified date].
+        /// Determines whether the year of the specified date is a leap year.
         /// </summary>
         /// <param name="date">The date.</param>
         /// <returns>
-        /// 	<c>true</c> if [is leap year] [the specified date]; otherwise, <c>false</c>.
+        /// Returns <var>TRUE</var> if the specified date is in a leap year; otherwise <var>FALSE</var>.
         /// </returns>
-        public static bool IsLeapYear(this DateTime date)
-        {
-            // test if number of days in Feburary is 29 for the current year in the date
-            return (DateTime.DaysInMonth(date.Year, 2).Equals(29));
+        public static bool IsLeapYear(this DateTime date) {
+            return DateHelpers.IsLeapYear(date);
         }
 
         /// <summary>
@@ -319,25 +261,61 @@ namespace Umbraco.Community.ExtensionMethods.Dates
         }
 
         /// <summary>
-        /// Gets the month string of the given DateTime
+        /// Get the English name of the day.
         /// </summary>
-        /// <param name="date">The DateTime object</param>
-        /// <returns>The string representation of month</returns>
-        /// <example>Returns "January" for the date 1.1.2013</example>
-        public static string GetMonthName(this DateTime date)
-        {
-            return date.ToString("MMMM");
+        /// <param name="date">The date.</param>
+        /// <returns>Returns the English name of the day.</returns>
+        public static string GetDayName(DateTime date) {
+            return DateHelpers.GetDayName(date);
         }
 
         /// <summary>
-        /// Gets the day string of the given DateTime.
+        /// Gets the name of the day as specified by the current culture.
         /// </summary>
-        /// <param name="date">The DateTime object</param>
-        /// <returns>The string representation of day</returns>
-        /// <example>Returns "Sunday" for the date 1.1.2013</example>
-        public static string GetDayName(this DateTime date)
-        {
-            return date.DayOfWeek.ToString();
+        /// <param name="date">The date.</param>
+        /// <returns>Returns the local name of the day.</returns>
+        public static string GetLocalDayName(DateTime date) {
+            return DateHelpers.GetLocalDayName(date);
         }
+
+        /// <summary>
+        /// Gets the name of the day as specified by <var>culture</var>.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="culture">The culture to be used.</param>
+        /// <returns>Returns the local name of the day.</returns>
+        public static string GetLocalDayName(DateTime date, CultureInfo culture) {
+            return DateHelpers.GetLocalDayName(date, culture);
+        }
+
+        /// <summary>
+        /// Get the English name of the month.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Returns the English name of the month.</returns>
+        public static string GetMonthName(DateTime date) {
+            return DateHelpers.GetMonthName(date);
+        }
+
+        /// <summary>
+        /// Gets the name of the month as specified by the current culture.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Returns the local name of the month.</returns>
+        public static string GetLocalMonthName(DateTime date) {
+            return DateHelpers.GetLocalMonthName(date);
+        }
+
+        /// <summary>
+        /// Gets the name of the month as specified by <var>culture</var>.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="culture">The culture to be used.</param>
+        /// <returns>Returns the local name of the month.</returns>
+        public static string GetLocalMonthName(DateTime date, CultureInfo culture) {
+            return DateHelpers.GetLocalMonthName(date, culture);
+        }
+
     }
+
 }

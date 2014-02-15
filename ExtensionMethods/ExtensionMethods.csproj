@@ -195,7 +195,8 @@
     <Compile Include="Content.cs" />
     <Compile Include="ASPNET.cs" />
     <Compile Include="DataTypes.cs" />
-    <Compile Include="Dates.cs" />
+    <Compile Include="Dates\ExtensionMethods\DateExtensionMethods.cs" />
+    <Compile Include="Dates\DateHelpers.cs" />
     <Compile Include="DocumentTypes.cs" />
     <Compile Include="ImageGen.cs" />
     <Compile Include="ImageResizing.cs" />
