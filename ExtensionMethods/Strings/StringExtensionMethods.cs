@@ -22,7 +22,7 @@ namespace Umbraco.Community.ExtensionMethods.Strings
         /// <returns>An integer of the number of words found</returns>
         public static int WordCount(this String str)
         {
-            return str.Split(new char[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            return str.Split(new char[] { ' ', '.', '?', '!' }, StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
         /// <summary>
