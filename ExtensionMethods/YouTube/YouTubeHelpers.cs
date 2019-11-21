@@ -62,7 +62,7 @@ namespace Umbraco.Community.ExtensionMethods.YouTube {
             var tests = new[] {
                 Regex.Match(subject, "^((\\w|-){11}$)"),
                 Regex.Match(subject, "v=((\\w|-){11})"),
-                Regex.Match(subject, "\\/((\\w|-){11})$"),
+                Regex.Match(subject.Split('?')[0], "\\/((\\w|-){11})$"),
                 Regex.Match(subject, "\\/vi|v|embed/((\\w|-){11})")
             };
 
