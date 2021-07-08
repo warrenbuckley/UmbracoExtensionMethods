@@ -340,6 +340,74 @@ namespace Umbraco.Community.ExtensionMethods.Strings
             return string.Empty;
         }
 
+        /// <summary>
+        /// Returns the string as a boolean value
+        /// </summary>
+        /// <param name="str">
+        /// The string
+        /// </param>
+        /// <returns>
+        /// Boolean value
+        /// </returns>
+        public static bool ToBoolean(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return false;
+            if (str == "1")
+                return true;
+            bool value;
+            return bool.TryParse(str, out value) && value;
+        }
 
+        /// <summary>
+        /// Safely parse string to integer. Return zero if not an integer
+        /// </summary>
+        /// <param name="str">
+        /// The string
+        /// </param>
+        /// <returns>Integer Value</returns>
+        public static int ToInt(this string str)
+        {
+            int retValue = 0;
+            if (str != null)
+                int.TryParse(str, out retValue);
+
+            return retValue;
+        }
+
+        /// <summary>
+        /// Returns the string as a datetime
+        /// </summary>
+        /// <param name="str">
+        /// The string
+        /// </param>
+        /// <returns>
+        /// A DateTime value
+        /// </returns>
+        public static DateTime ToDate(this string str)
+        {
+            DateTime date;
+            DateTime.TryParse(str, out date);
+            return date;
+        }
+
+        /// <summary>
+        /// Returns the string as a nullable datetime
+        /// </summary>
+        /// <param name="str">
+        /// The string
+        /// </param>
+        /// <returns>
+        /// A nullable DateTime value
+        /// </returns>
+        public static DateTime? ToNullableDate(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return null;
+            DateTime date;
+            if (DateTime.TryParse(str, out date))
+                return date;
+            return null;
+        }
     }
 }
